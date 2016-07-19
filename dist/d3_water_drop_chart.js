@@ -52,13 +52,13 @@
       percentContainer = document.createElement("span");
       percentNumberContainer = document.createElement("span");
       legendContainerWrapper.appendChild(legendContainer);
-      percentNumberContainer.appendChild(document.createTextNode(parseInt(data[i][0].y * 100) + "% "));
+      percentNumberContainer.appendChild(document.createTextNode(parseFloat(data[i][0].y * 100).toFixed(2) + "% "));
       percentContainer.appendChild(document.createTextNode(data[i][0].label));
       legendContainer.appendChild(percentNumberContainer);
       legendContainer.appendChild(percentContainer);
-      legendContainerWrapper.setAttribute('style', 'width:' + (parseInt(width/2)) + 'px ');
+      legendContainerWrapper.setAttribute('style', 'width:' + (parseFloat(width/2).toFixed(2)) + 'px ');
       legend.appendChild(legendContainerWrapper);
-      if(data[i] && data[i][0].y) legendsList.appendChild(legend);
+      legendsList.appendChild(legend);
     }
 
     chart.appendChild(legendsList);
@@ -146,8 +146,7 @@
         var height = 0.0;
         for (var i = items.length; i > 0; i--) {
           var idx = i - 1;
-          var containerLegend = document.querySelector(container + ' .legend-' + idx);
-		  if (containerLegend) containerLegend.(container + ' .legend-' + idx).setAttribute('style', 'top:' + (parseFloat(items[idx].getBoundingClientRect().top - document.querySelector(container + " .water-drop-legend-container").getBoundingClientRect().top)  + parseFloat(items[idx].getAttribute('height')) / 2) + 'px;');
+          document.querySelector(container + ' .legend-' + idx).setAttribute('style', 'top:' + (parseFloat(items[idx].getBoundingClientRect().top - document.querySelector(container + " .water-drop-legend-container").getBoundingClientRect().top)  + parseFloat(items[idx].getAttribute('height')) / 2) + 'px;');
         }
       });
   };
